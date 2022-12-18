@@ -22,8 +22,9 @@ export class Notification {
         createdAt?: Date;
       }
     >,
+    id?: string,
   ) {
-    this._id = randomUUID();
+    this._id = id ?? randomUUID();
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
@@ -35,8 +36,8 @@ export class Notification {
     return this._id;
   }
 
-  // GET AND SET RECEPIENT ID
-  public get recepientId(): string {
+  // GET AND SET RECIPIENT ID
+  public get recipientId(): string {
     return this.props.recipientId;
   }
 

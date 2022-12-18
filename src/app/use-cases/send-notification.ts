@@ -32,7 +32,7 @@ export class SendNotification {
     // DATA PERSISTENCY LAYER
     await this.notificationsRepository.create(notification);
 
-    // OBJECT RETURN
+    // RETURN OBJECT
     return {
       notification,
     };
