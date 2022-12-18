@@ -50,8 +50,12 @@ export class Notification {
   }
 
   // GET AND SET READ TIME
-  public set readAt(readAt: Date | undefined | null) {
-    this.props.readAt = readAt;
+  public read() {
+    this.props.readAt = new Date();
+  }
+
+  public unread() {
+    this.props.readAt = null;
   }
 
   public get readAt(): Date | undefined | null {

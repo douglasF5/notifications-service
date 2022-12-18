@@ -2,9 +2,8 @@ import { NotificationsRepository } from '@app/repositories/notifications-reposit
 import { Notification } from '@app/entities/notification';
 
 export class InMemoryNotificationsRepository
-  // eslint-disable-next-line prettier/prettier
-  implements NotificationsRepository {
-
+  implements NotificationsRepository
+{
   public notifications: Notification[] = [];
 
   async findById(notificationId: string): Promise<Notification | null> {
@@ -19,9 +18,15 @@ export class InMemoryNotificationsRepository
     return notification;
   }
 
+  async findManyByRecipientId(recipientId: string): Promise<Notification[]> {
+    return this.notifications.filter(
+      (item) => item.recepientId === recipientId,
+    );
+  }
+
   async countManyByRecipientId(recipientId: string): Promise<number> {
     return this.notifications.filter((item) => {
-      item.recepientId === recipientId;
+      return item.recepientId === recipientId;
     }).length;
   }
 
