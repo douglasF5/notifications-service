@@ -14,7 +14,7 @@
 
 Back-end microservice built with NestJS for managing notifications.
 
-<img src=".github/project-screenshot.png"><br>
+<img src=".github/project-screenshot-2.png"><br>
 
 ```
 🧪 Unit tests cover all main entities and use-cases.
