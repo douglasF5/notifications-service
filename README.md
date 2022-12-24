@@ -12,7 +12,9 @@
 
 ## About
 
-Back-end microservice built with NextJS for managing notifications.
+Back-end microservice built with NestJS for managing notifications.
+
+<img src=".github/project-screenshot.png"><br>
 
 ```
 🧪 Unit tests cover all main entities and use-cases.
@@ -31,11 +33,9 @@ Back-end microservice built with NextJS for managing notifications.
 | Create notification  | POST  | / | Notification request object | Notification object
 | Get notifications per recipient | GET | /from/:recipientId | Recipient ID | Notifications list
 | Count notifications per recipient | GET | /count/from/:recipientId | Recipient ID | Count number
-| Set notifications as read | PATCH | /read/:id | Notification ID | -
-| Set notifications as unread | PATCH | /unread/:id | Notification ID | -
-| Cancel notifications | PATCH | /cancel/:id | Notification ID | -
-
-<br/>
+| Set notification as read | PATCH | /read/:id | Notification ID | - |
+| Set notification as unread | PATCH | /unread/:id | Notification ID | - |
+| Cancel notification | PATCH | /cancel/:id | Notification ID | - |
 
 ### Data types
 
