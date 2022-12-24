@@ -1,73 +1,101 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Notifications microservice
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+- [About](#about)
+  - [Tools](#tools)
+  - [API Endpoints](#api-endpoints)
+  - [Data types](#data-types)
+- [Showcase and examples](#showcase-and-examples)
+- [Installing and running](#installing-and-running)
+- [Extra notes](#extra-notes)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+<br>
 
-## Description
+## About
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Back-end microservice built with NextJS for managing notifications.
 
-## Installation
-
-```bash
-$ npm install
+```
+🧪 Unit tests cover all main entities and use-cases.
 ```
 
-## Running the app
+### Tools used
 
-```bash
-# development
-$ npm run start
+`Typescript`  `NodeJS`  `NestJS`  `Prisma ORM`  `SQLite`  `JestJS`
 
-# watch mode
-$ npm run start:dev
+<br/>
 
-# production mode
-$ npm run start:prod
+### API Endpoints
+
+| Action | HTTP method | Route | Arguments | Return  |
+| --- | --- | --- | --- | --- |
+| Create notification  | POST  | / | Notification request object | Notification object
+| Get notifications per recipient | GET | /from/:recipientId | Recipient ID | Notifications list
+| Count notifications per recipient | GET | /count/from/:recipientId | Recipient ID | Count number
+| Set notifications as read | PATCH | /read/:id | Notification ID | -
+| Set notifications as unread | PATCH | /unread/:id | Notification ID | -
+| Cancel notifications | PATCH | /cancel/:id | Notification ID | -
+
+<br/>
+
+### Data types
+
+| Data | Type |
+| --- | --- |
+| Notification ID | string/UUID |
+| Recipient ID | string/UUID |
+| Notifications count | number |
+| Notifications list | Notifications [ ] |
+
+<br/>
+
+#### Notification request object
+```TypeScript
+{
+  "content": String, 
+  "recipientId": String,
+  "category": String
+}
 ```
 
-## Test
+<br/>
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+#### Notification object
+```TypeScript
+{
+  recipientId: string,
+  createdAt: Date,
+  readAt: Date | null,
+  canceledAt: Date | null,
+  category: string,
+  content: Content,
+}
 ```
 
-## Support
+<br/>
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Installing and running
+Installing dependencies
+```
+npm install
+```
+Starting the development server to serve the application locally
+```
+npm run start:dev
+```
+Running all unit tests
+```
+npm run test
+```
+After installing Prisma you can run the Prisma Studio to visualize database entities
+```
+npx prisma studio
+```
 
-## Stay in touch
+<small style="font-size: 11px; color: rgba(125, 125, 125, 1);">Check out package.json for more scripts.</small>
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+<br>
 
-## License
+## Extra notes
 
-Nest is [MIT licensed](LICENSE).
+- As an exercise, this project wasn’t focused on advanced optimizations regarding data storage, processing, accessibility, scalability, cross-browser compatibilities, etc. There’s still a lot to be done about it.
+- As most projects, this one is not bug/error-free. If you find any bug or unexpected behavior, feel free to get in touch, here is my email - dfaferreira46@gmail.com
